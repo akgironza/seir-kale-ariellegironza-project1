@@ -7,7 +7,7 @@ User searches for a member of congress by name and is able to see their position
 HTML, CSS, JavaScript, jQuery
 
 ### API used
-https://api.propublica.org/congress/v1/{congress}/{chamber}/sessions/{session-number}/votes/{roll-call-number}.json
+https://projects.propublica.org/api-docs/congress-api/
 
 #### Sample code
 ``` js
