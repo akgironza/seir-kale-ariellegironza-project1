@@ -10,20 +10,19 @@ $.ajax({
   error: function(){
   alert: ("Unable to get data");
 }
-}).then((response) => {
-  const recentVotesData = response.results.votes
-  console.log(recentVotesData);
-})
 // recentVotesData.results.votes // these are all keys
 // inside of votes there is an array of 0 - 19
 // using map callback - for i (roll call number) in recentVotesData
-// console.log -- roll_call
+// console.log -- roll_call basically
 
-// Sorting out roll_call numbers from Recent Votes
-// results.votes <-- this is the part of the object needed to access the votes array
-// **Need array method/callback to loop through each item in the array**
-  // within each item of the array, want to get to value of roll_call
-  // take that value and append to the new array3
+}).then((response) => {
+  const recentVotesData = response.results.votes
+  // console.log(recentVotesData)
+
+  // Sorting out roll_call numbers from Recent Votes
+  const recentRollCalls = recentVotesData.map(i => i.roll_call)
+  console.log(recentRollCalls);
+})
 
 
 // API call: Get a Specific Roll Call Vote
