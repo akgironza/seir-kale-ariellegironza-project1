@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+    outline: 2px blue;
+}
+
+.nav {
+    display:flex;
+    font-size: 1em;
+    padding-top: 3%;
+    justify-content: space-around
+}
+
+.nav-items {
+
+}
+
