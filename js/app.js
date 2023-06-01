@@ -22,11 +22,12 @@ $.ajax({
   const recentRollCalls = recentVotesData.map(i => i.roll_call)
   console.log(recentRollCalls);
 
-  
+
   // API call: Get a Specific Roll Call Vote
   // I think I want to do a callback/loop for this API call
     // need to swap out the roll_call number in the url
-  for (rollCall in recentRollCalls){
+  
+  function pullRollCalls(rollCall){
     $.ajax({
       url: `https://api.propublica.org/congress/v1/118/house/sessions/1/votes/${rollCall}.json`, 
       beforeSend: function(xhr) { 
@@ -38,9 +39,13 @@ $.ajax({
       alert: ("Unable to get data");
     }
   }).then((data) => {
+    console.log(rollCall)
     console.log(data);
   })
   }
+  
+  recentRollCalls.forEach(pullRollCalls)
+
 })
 
 
