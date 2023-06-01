@@ -1,5 +1,4 @@
 // API call: Get Recent Votes
-
 $.ajax({
   url: "https://api.propublica.org/congress/v1/house/votes/recent.json",
   beforeSend: function(xhr) { 
@@ -22,12 +21,31 @@ $.ajax({
   // Sorting out roll_call numbers from Recent Votes
   const recentRollCalls = recentVotesData.map(i => i.roll_call)
   console.log(recentRollCalls);
+
+  
+  // API call: Get a Specific Roll Call Vote
+  // I think I want to do a callback/loop for this API call
+    // need to swap out the roll_call number in the url
+  for (rollCall in recentRollCalls){
+    $.ajax({
+      url: `https://api.propublica.org/congress/v1/118/house/sessions/1/votes/${rollCall}.json`, 
+      beforeSend: function(xhr) { 
+      xhr.setRequestHeader("X-API-Key","Zcqysq7u2VyNWvhGaNDnW96LIyjjfSxMFGiiRP9j");
+    },
+    dataType: "json",
+    contentType: "application/json",
+    error: function(){
+      alert: ("Unable to get data");
+    }
+  }).then((data) => {
+    console.log(data);
+  })
+  }
 })
 
 
 // API call: Get a Specific Roll Call Vote
-// testing with a specific roll-call number currently
-
+/* testing with a specific roll-call number currently
 $.ajax({
   url: "https://api.propublica.org/congress/v1/118/house/sessions/1/votes/237.json",
   beforeSend: function(xhr) { 
@@ -41,3 +59,4 @@ $.ajax({
 }).then((data) => {
   console.log(data);
 })
+*/
