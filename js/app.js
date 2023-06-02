@@ -39,13 +39,13 @@ $.ajax({
       alert: ("Unable to get data");
     }
   }).then((data) => {
-    console.log(rollCall)
+    // console.log(rollCall)
     console.log(data);
   })
   }
-  
   recentRollCalls.forEach(pullRollCalls)
-
+  // the fact that this is working now... kinda don't want to touch this anymore
+  // but I will continue
 })
 
 

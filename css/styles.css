@@ -1,16 +1,15 @@
 * {
     box-sizing: border-box;
-    outline: 2px blue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+h1 {
+    text-align: center;
+}
 .nav {
     display:flex;
     font-size: 1em;
     padding-top: 3%;
     justify-content: space-around
-}
-
-.nav-items {
-
 }
 
