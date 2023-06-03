@@ -24,9 +24,18 @@ h1 {
     justify-content: center;
 }
 
+.results {
+    display: grid;
+    grid-template-columns: 1fr 0.6fr;
+    gap: 10px;
+}
+
 .votesContainer div {
     text-align: left;
     padding-top: 5%;
+}
 
-
+.repDetails div {
+    text-align: right;
+    padding-top: 15%;
 }

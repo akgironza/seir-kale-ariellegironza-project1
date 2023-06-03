@@ -47,6 +47,7 @@ $.ajax({
     //console.log(response);
     // empty the container?
     //$votesContainer.empty()
+
     $votesContainer.append($("<div>").text(
       `${response.results.votes.vote.date} ||
       ${response.results.votes.vote.bill.number}||
@@ -55,13 +56,10 @@ $.ajax({
       Additional details: ${response.results.votes.vote.description} ||
       ${response.results.votes.vote.result} ||`
       ));
-    $repDetails.append($("<div>").text(
-      `${response.results.votes.vote.positions[0].name}`
-      ))
+
   // User inputs congressperson's name and clicks SEARCH
   // Strings should concatenate
   const $form = $("form")
-
   $form.on("submit", event => {
     event.preventDefault() // prevent page refresh
 
@@ -78,6 +76,12 @@ $.ajax({
   const targetName = `${fullRepName}`;
   const targetIndex = reps.findIndex(rep => rep.name === `${fullRepName}`);
   console.log(targetIndex);
+
+  $repDetails.append($("<div>").text(
+    `${response.results.votes.vote.bill.number} || ${response.results.votes.vote.positions[targetIndex].name} (${response.results.votes.vote.positions[targetIndex].party}, ${response.results.votes.vote.positions[targetIndex].state}) voted/responded:
+    ${response.results.votes.vote.positions[targetIndex].vote_position} ||
+    `
+    ))
 })
     }
 )}
