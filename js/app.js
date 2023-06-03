@@ -71,9 +71,13 @@ $.ajax({
   const fullRepName = `${formData.get("firstname")} ${formData.get("lastname")}`
   console.log(fullRepName) // testing testing, good so far
   
+  // need to be able to more easily access the reps and their positions
+  // when user searches for a rep we should be able to access their index (for later)
   const reps = response.results.votes.vote.positions
-  //const repIndex = reps.findIndex(name === fullRepName)
-  console.log(reps);
+  //console.log(reps) //test test
+  const targetName = `${fullRepName}`;
+  const targetIndex = reps.findIndex(rep => rep.name === `${fullRepName}`);
+  console.log(targetIndex);
 })
     }
 )}
