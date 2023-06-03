@@ -16,20 +16,20 @@ $.ajax({
 
 }).then((response) => {
   const recentVotesData = response.results.votes
-  // console.log(recentVotesData)
+  //console.log(recentVotesData)
 
   // Sorting out roll_call numbers from Recent Votes
   const recentRollCalls = recentVotesData.map(i => i.roll_call)
   console.log(recentRollCalls);
 
+
   // API call: Get a Specific Roll Call Vote
   // Callback for this API call to go over the previous data received
     // need to swap out the roll_call number in the url
     // need to create a new section in the webpage for each vote
-
   function pullRollCalls(rollCall){
     const $votesContainer = $(".votesContainer");
-    const voteDetails = [];
+    const $repDetails = $(".repDetails");
     $.ajax({
       url: `https://api.propublica.org/congress/v1/118/house/sessions/1/votes/${rollCall}.json`, 
       beforeSend: function(xhr) { 
@@ -41,9 +41,10 @@ $.ajax({
       alert: ("Unable to get data");
     }
   }).then((response) => {
-    console.log(rollCall);
+    //console.log(voteDetails.push(response));
+    //console.log(voteDetails);
+    //console.log(rollCall);
     //console.log(response);
-    voteDetails.push(response);
     // empty the container?
     //$votesContainer.empty()
     $votesContainer.append($("<div>").text(
@@ -54,38 +55,52 @@ $.ajax({
       Additional details: ${response.results.votes.vote.description} ||
       ${response.results.votes.vote.result} ||`
       ));
-    console.log(voteDetails);
-  })
-  }
-recentRollCalls.forEach(pullRollCalls)
+    $repDetails.append($("<div>").text(
+      `${response.results.votes.vote.positions[0].name}`
+      ))
+  // User inputs congressperson's name and clicks SEARCH
+  // Strings should concatenate
+  const $form = $("form")
 
-
-// User inputs congressperson's name and clicks SEARCH
-// Strings should concatenate
-const $form = $("form")
-
-$form.on("submit", event => {
-  event.preventDefault() // prevent page refresh
+  $form.on("submit", event => {
+    event.preventDefault() // prevent page refresh
 
   // create formData object for the name search
     // get the data needed from formData
   const formData = new FormData(event.target)
   const fullRepName = `${formData.get("firstname")} ${formData.get("lastname")}`
   console.log(fullRepName) // testing testing, good so far
-
-
-// THIS WILL BASICALLY BE, IF THE REP'S FULL NAME
-  // IS IN THE SPECIFIC PART OF THE ARRAY, THEN...
-  /*
-  for (v of recentRollCalls){
-    (let i=0; i=4) 
-  }
-  recentRollCalls.forEach(i => )
-  console.log(recentRollCalls);
-  recentRollCalls.forEach(() => {
-    if (fullRepName === (recentRollCalls.results.votes.vote.positions[i].name)){
-      console.log(fullRepName)
-    }
-  })*/
-});
+  
+  const reps = response.results.votes.vote.positions
+  //const repIndex = reps.findIndex(name === fullRepName)
+  console.log(reps);
 })
+    }
+)}
+  recentRollCalls.forEach(pullRollCalls)
+});
+
+
+/*
+  // THIS WILL BASICALLY BE, IF THE REP'S FULL NAME 
+// IS IN THE SPECIFIC PART OF THE ARRAY, THEN...
+  const repDetails = voteDetails.find(((voteDetails.results.vote.votes[positions]), index) => {
+    //return : `${fullRepName}`
+  })
+});
+  //if(fullRepName === (voteDetails.results.votes.vote[positions][].name)){
+    //console.log(fullRepName)
+
+recentRollCalls.forEach(pullRollCalls)
+}); */
+
+/*
+const targetId = `${fullRepName}`
+const targetObject = voteDetails.find(obj => obj.results.votes.vote.positions === targetId);
+
+if (targetObject) {
+  console.log(targetObject.vote_position);
+} else {
+  console.log("name not found")
+}
+*/
