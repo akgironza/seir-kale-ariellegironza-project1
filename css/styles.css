@@ -32,10 +32,15 @@ h1 {
 
 .votesContainer div {
     text-align: left;
-    padding-top: 5%;
+    padding-top: 6%;
 }
 
 .repDetails div {
     text-align: right;
-    padding-top: 15%;
+    padding-top: 11%;
+}
+
+.repDetails p {
+    text-align: right;
+    padding-top: 2%;
 }

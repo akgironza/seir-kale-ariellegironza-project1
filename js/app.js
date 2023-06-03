@@ -50,12 +50,16 @@ $.ajax({
 
     $votesContainer.append($("<div>").text(
       `${response.results.votes.vote.date} ||
-      ${response.results.votes.vote.bill.number}||
-      ${response.results.votes.vote.bill.title} ||
+      ${response.results.votes.vote.bill.number}`
+    ))
+    $votesContainer.append($("<p>").text(
+      `${response.results.votes.vote.bill.title} ||
       ${response.results.votes.vote.question} ||
-      Additional details: ${response.results.votes.vote.description} ||
-      ${response.results.votes.vote.result} ||`
-      ));
+      Additional details: ${response.results.votes.vote.description} ||`
+    ))
+    $votesContainer.append($("<p>").text(
+      `|| ${response.results.votes.vote.result} ||`
+    ));
 
   // User inputs congressperson's name and clicks SEARCH
   // Strings should concatenate
@@ -80,9 +84,14 @@ $.ajax({
   $repDetails.append($("<div>").text(
     `${response.results.votes.vote.bill.number} || ${response.results.votes.vote.positions[targetIndex].name} (${response.results.votes.vote.positions[targetIndex].party}, ${response.results.votes.vote.positions[targetIndex].state}) voted/responded:
     ${response.results.votes.vote.positions[targetIndex].vote_position} ||
-    `
-    ))
-})
+    `))
+  $repDetails.append($("<p>").text(
+    `Democratic party vote breakdown: ${response.results.votes.vote.democratic.yes} yes, ${response.results.votes.vote.democratic.no} no, ${response.results.votes.vote.democratic.not_voting} did not vote. ||
+    `))
+  $repDetails.append($("<p>").text(
+    `Republican party vote breakdown: ${response.results.votes.vote.republican.yes} yes, ${response.results.votes.vote.republican.no} no, ${response.results.votes.vote.republican.not_voting} did not vote. ||
+  `))
+  })
     }
 )}
   recentRollCalls.forEach(pullRollCalls)
