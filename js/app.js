@@ -49,19 +49,18 @@ $.ajax({
 })
 
 
-// API call: Get a Specific Roll Call Vote
-/* testing with a specific roll-call number currently
-$.ajax({
-  url: "https://api.propublica.org/congress/v1/118/house/sessions/1/votes/237.json",
-  beforeSend: function(xhr) { 
-    xhr.setRequestHeader("X-API-Key","Zcqysq7u2VyNWvhGaNDnW96LIyjjfSxMFGiiRP9j");
-  },
-  dataType: "json",
-  contentType: "application/json",
-  error: function(){
-  alert: ("Unable to get data");
-}
-}).then((data) => {
-  console.log(data);
+// User inputs congressperson's name and clicks SEARCH
+
+$("form").on("submit", (event) => {
+  console.log(event) // not sure yet
+
+  // prevent page refresh
+  event.preventDefault()
+
+  // create formData object for the name search
+    // get the data needed from formData
+  const formData = new FormData(event.target)
+  const fullRepName = `${formData.get("firstname")} ${formData.get("lastname")}`
+  console.log(fullRepName) // testing testing, good so far
+
 })
-*/
